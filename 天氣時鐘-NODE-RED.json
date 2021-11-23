@@ -1,0 +1,939 @@
+[
+    {
+        "id": "bc5b6489fcbdf981",
+        "type": "tab",
+        "label": "流程1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c693e6dd1b9e2e72",
+        "type": "ui_tab",
+        "name": "氣象觀測",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "c84691d9e8b9a023",
+        "type": "ui_group",
+        "name": "氣象描述",
+        "tab": "c693e6dd1b9e2e72",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "d480f774c8b2bc46",
+        "type": "ui_group",
+        "name": "溫濕度折線圖",
+        "tab": "c693e6dd1b9e2e72",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "564e1f5353bae31c",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#eff2cf",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#eff2cf",
+                    "edited": true
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#eff2cf",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#eff2cf",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "35b08f5f75bf1d2a",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "3c1836b47d43fb9a",
+        "type": "ui_group",
+        "name": "PM25微浮粒子-花東地區",
+        "tab": "c693e6dd1b9e2e72",
+        "order": 4,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "9abe18972ef77e57",
+        "type": "ui_tab",
+        "name": "開關燈",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "f87a3d803083537f",
+        "type": "ui_group",
+        "name": "開關",
+        "tab": "c693e6dd1b9e2e72",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "5cf66a1dd6a8137a",
+        "type": "inject",
+        "z": "bc5b6489fcbdf981",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "300",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 120,
+        "wires": [
+            [
+                "47178a60bb4d171b"
+            ]
+        ]
+    },
+    {
+        "id": "881a0c5a94902376",
+        "type": "json",
+        "z": "bc5b6489fcbdf981",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 490,
+        "y": 120,
+        "wires": [
+            [
+                "8c81e0541f2d4cb1",
+                "e10e5679ad6fc1b2",
+                "6230d2a7192e0b99"
+            ]
+        ]
+    },
+    {
+        "id": "47178a60bb4d171b",
+        "type": "http request",
+        "z": "bc5b6489fcbdf981",
+        "name": "天氣抓取網伺服端",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://api.openweathermap.org/data/2.5/weather?q=Taipei,TW&lang=zh_tw&&units=metric&appid=f7922c4d99e223e7380d80a7f3db6b64",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 330,
+        "y": 120,
+        "wires": [
+            [
+                "881a0c5a94902376"
+            ]
+        ]
+    },
+    {
+        "id": "8c81e0541f2d4cb1",
+        "type": "change",
+        "z": "bc5b6489fcbdf981",
+        "name": "設定天氣概況",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.weather[0].description",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 240,
+        "y": 180,
+        "wires": [
+            [
+                "09cd3f856901095c",
+                "8174de211a635e18"
+            ]
+        ]
+    },
+    {
+        "id": "09cd3f856901095c",
+        "type": "ui_text",
+        "z": "bc5b6489fcbdf981",
+        "group": "c84691d9e8b9a023",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "天氣概況",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 440,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "e10e5679ad6fc1b2",
+        "type": "change",
+        "z": "bc5b6489fcbdf981",
+        "name": "設定溫度",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.main.temp",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 220,
+        "y": 220,
+        "wires": [
+            [
+                "e2eafeba02fb5816",
+                "b3826ac7fb434316",
+                "7dfbca19d2048b70"
+            ]
+        ]
+    },
+    {
+        "id": "e2eafeba02fb5816",
+        "type": "ui_gauge",
+        "z": "bc5b6489fcbdf981",
+        "name": "",
+        "group": "c84691d9e8b9a023",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "溫度",
+        "label": "度",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 430,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "6230d2a7192e0b99",
+        "type": "change",
+        "z": "bc5b6489fcbdf981",
+        "name": "設定濕度",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.main.humidity",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 220,
+        "y": 260,
+        "wires": [
+            [
+                "9519257eec8063cd",
+                "80759a4e26160955",
+                "7b88dd195c41b20d"
+            ]
+        ]
+    },
+    {
+        "id": "9519257eec8063cd",
+        "type": "ui_gauge",
+        "z": "bc5b6489fcbdf981",
+        "name": "",
+        "group": "c84691d9e8b9a023",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "濕度",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 430,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "b3826ac7fb434316",
+        "type": "ui_chart",
+        "z": "bc5b6489fcbdf981",
+        "name": "",
+        "group": "d480f774c8b2bc46",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "溫度折線",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": true,
+        "ymin": "0",
+        "ymax": "50",
+        "removeOlder": 1,
+        "removeOlderPoints": "20",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#b38b1e",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 440,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "80759a4e26160955",
+        "type": "ui_chart",
+        "z": "bc5b6489fcbdf981",
+        "name": "",
+        "group": "d480f774c8b2bc46",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "濕度折線",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": true,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "20",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 440,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8174de211a635e18",
+        "type": "mqtt out",
+        "z": "bc5b6489fcbdf981",
+        "name": "",
+        "topic": "esp32/state",
+        "qos": "0",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "35b08f5f75bf1d2a",
+        "x": 630,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "375e0eef91a516c7",
+        "type": "json",
+        "z": "bc5b6489fcbdf981",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 470,
+        "y": 460,
+        "wires": [
+            [
+                "be0fbb7315468ce1"
+            ]
+        ]
+    },
+    {
+        "id": "1fee8384f1c0d723",
+        "type": "http request",
+        "z": "bc5b6489fcbdf981",
+        "name": "pm2.5抓取資料",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://data.epa.gov.tw/api/v1/aqx_p_02?offset=0&limit=200&api_key=cbfa998e-6bb9-4f1b-bd5b-2565e3b60f99",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 330,
+        "y": 460,
+        "wires": [
+            [
+                "375e0eef91a516c7"
+            ]
+        ]
+    },
+    {
+        "id": "be0fbb7315468ce1",
+        "type": "change",
+        "z": "bc5b6489fcbdf981",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.records[37].PM25",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 310,
+        "y": 520,
+        "wires": [
+            [
+                "9bafe75483d1eae0",
+                "20cf9670d7433a0e",
+                "15ccec503b7db078"
+            ]
+        ]
+    },
+    {
+        "id": "9bafe75483d1eae0",
+        "type": "ui_text",
+        "z": "bc5b6489fcbdf981",
+        "group": "3c1836b47d43fb9a",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "PM2.5微浮粒子-花東",
+        "format": "{{msg.payload}} μg/m3",
+        "layout": "row-spread",
+        "className": "",
+        "x": 560,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "20cf9670d7433a0e",
+        "type": "ui_gauge",
+        "z": "bc5b6489fcbdf981",
+        "name": "",
+        "group": "3c1836b47d43fb9a",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "PM2.5微浮粒子",
+        "label": "μg/m3",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "200",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "50",
+        "seg2": "100",
+        "className": "",
+        "x": 540,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "15ccec503b7db078",
+        "type": "mqtt out",
+        "z": "bc5b6489fcbdf981",
+        "name": "",
+        "topic": "esp32/pm25",
+        "qos": "",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "35b08f5f75bf1d2a",
+        "x": 290,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "2a245aac603ae2c5",
+        "type": "inject",
+        "z": "bc5b6489fcbdf981",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 460,
+        "wires": [
+            [
+                "1fee8384f1c0d723"
+            ]
+        ]
+    },
+    {
+        "id": "7dfbca19d2048b70",
+        "type": "mqtt out",
+        "z": "bc5b6489fcbdf981",
+        "name": "",
+        "topic": "esp32/temp",
+        "qos": "",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "35b08f5f75bf1d2a",
+        "x": 630,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "7b88dd195c41b20d",
+        "type": "mqtt out",
+        "z": "bc5b6489fcbdf981",
+        "name": "",
+        "topic": "esp32/humi",
+        "qos": "",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "35b08f5f75bf1d2a",
+        "x": 630,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "935e06b693d3c98d",
+        "type": "inject",
+        "z": "bc5b6489fcbdf981",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 137.00000381469727,
+        "y": 684.0000240802765,
+        "wires": [
+            [
+                "6ef9b68d278e9ba7"
+            ]
+        ]
+    },
+    {
+        "id": "6ef9b68d278e9ba7",
+        "type": "simpletime",
+        "z": "bc5b6489fcbdf981",
+        "name": "日期時間",
+        "mydate": false,
+        "myymd": true,
+        "myyear": false,
+        "mymonth": false,
+        "mymonthn": false,
+        "mydom": false,
+        "mydoy": false,
+        "myday": false,
+        "myhourpm": false,
+        "myhour": false,
+        "mytime": false,
+        "mytimes": true,
+        "myminute": false,
+        "myminutes": false,
+        "mysecond": false,
+        "mymillis": false,
+        "myepoch": false,
+        "myrawdate": false,
+        "mypm": false,
+        "x": 307.00000381469727,
+        "y": 684.0000240802765,
+        "wires": [
+            [
+                "b3979fc15f5df06f",
+                "e36f52ad2ede0d34",
+                "423d3374743bf1c1"
+            ]
+        ]
+    },
+    {
+        "id": "b3979fc15f5df06f",
+        "type": "ui_text",
+        "z": "bc5b6489fcbdf981",
+        "group": "c84691d9e8b9a023",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "日期",
+        "format": "{{msg.myymd}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 507.00000381469727,
+        "y": 684.0000240802765,
+        "wires": []
+    },
+    {
+        "id": "e36f52ad2ede0d34",
+        "type": "ui_text",
+        "z": "bc5b6489fcbdf981",
+        "group": "c84691d9e8b9a023",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "時間",
+        "format": "{{msg.mytimes}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 507.00000381469727,
+        "y": 724.0000240802765,
+        "wires": []
+    },
+    {
+        "id": "423d3374743bf1c1",
+        "type": "function",
+        "z": "bc5b6489fcbdf981",
+        "name": "",
+        "func": "var payload=msg;\nmsg.payload=payload.myymd+\" \"+payload.mytimes\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 307.00000381469727,
+        "y": 724.0000240802765,
+        "wires": [
+            [
+                "1687068d18856865",
+                "a98a4d4abeb15733"
+            ]
+        ]
+    },
+    {
+        "id": "1687068d18856865",
+        "type": "debug",
+        "z": "bc5b6489fcbdf981",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 467.00000381469727,
+        "y": 764.0000240802765,
+        "wires": []
+    },
+    {
+        "id": "a98a4d4abeb15733",
+        "type": "mqtt out",
+        "z": "bc5b6489fcbdf981",
+        "name": "",
+        "topic": "esp32/date",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "35b08f5f75bf1d2a",
+        "x": 467.00000381469727,
+        "y": 804.0000240802765,
+        "wires": []
+    },
+    {
+        "id": "3f3937ce465a2a97",
+        "type": "ui_switch",
+        "z": "bc5b6489fcbdf981",
+        "name": "",
+        "label": "房間燈",
+        "tooltip": "",
+        "group": "3c1836b47d43fb9a",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "on",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "off",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 200,
+        "y": 900,
+        "wires": [
+            [
+                "6756fd7c48a03558",
+                "2153a45374d2cef3"
+            ]
+        ]
+    },
+    {
+        "id": "6756fd7c48a03558",
+        "type": "debug",
+        "z": "bc5b6489fcbdf981",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 430,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "2153a45374d2cef3",
+        "type": "mqtt out",
+        "z": "bc5b6489fcbdf981",
+        "name": "",
+        "topic": "esp32/switch",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "35b08f5f75bf1d2a",
+        "x": 410,
+        "y": 940,
+        "wires": []
+    }
+]

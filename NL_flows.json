@@ -1,0 +1,785 @@
+[
+    {
+        "id": "bd347a06c48fec37",
+        "type": "tab",
+        "label": "農民曆",
+        "disabled": false,
+        "info": "# 農民曆",
+        "env": []
+    },
+    {
+        "id": "6fcd93d714730642",
+        "type": "http request",
+        "z": "bd347a06c48fec37",
+        "name": "請求農民曆",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://api.djapi.cn/wannianli/get?cn_to_unicode=1&token=84bd874d87593b8fb2f595ac00c61bab",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "credentials": {},
+        "x": 210,
+        "y": 100,
+        "wires": [
+            [
+                "edcb22b587220409"
+            ]
+        ]
+    },
+    {
+        "id": "edcb22b587220409",
+        "type": "json",
+        "z": "bd347a06c48fec37",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 310,
+        "y": 60,
+        "wires": [
+            [
+                "6f1b506cd9b1e22e",
+                "94622c1ed65e3b6a",
+                "d9c900018a9f7057",
+                "ca8b8d1697385d14",
+                "f9c53058e7e36eee",
+                "27dfaf43632a23e7",
+                "cb0870b39ff5fb0a",
+                "71eabe020aa43f9e"
+            ]
+        ]
+    },
+    {
+        "id": "5121466c6cd8a1e2",
+        "type": "inject",
+        "z": "bd347a06c48fec37",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "*/30 5 * * *",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 60,
+        "wires": [
+            [
+                "6fcd93d714730642"
+            ]
+        ]
+    },
+    {
+        "id": "6f1b506cd9b1e22e",
+        "type": "change",
+        "z": "bd347a06c48fec37",
+        "name": "國曆",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.Result.gongli",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 20,
+        "wires": [
+            [
+                "cdb6ffe03b5532fd"
+            ]
+        ]
+    },
+    {
+        "id": "cdb6ffe03b5532fd",
+        "type": "ui_text",
+        "z": "bd347a06c48fec37",
+        "group": "fb57e216e5d222e0",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "國曆",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 590,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "0725fb91ce23c2ee",
+        "type": "ui_template",
+        "z": "bd347a06c48fec37",
+        "group": "fb57e216e5d222e0",
+        "name": "背景",
+        "order": 16,
+        "width": 6,
+        "height": 1,
+        "format": "<style>\n    body {\n        background-image: url(\"https://img.tukuppt.com/ad_preview/01/02/07/612db0c1e8e0b.jpg!/fw/780\");\n        background-size: 100% 100%;\n    }\n    \n    //body.nr-dashboard-theme md-content md-card {\n    //    background: rgba(1,200,1,0.1);\n    //}\n    \n   \n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 70,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "94622c1ed65e3b6a",
+        "type": "change",
+        "z": "bd347a06c48fec37",
+        "name": "星期",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.Result.week",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 60,
+        "wires": [
+            [
+                "8369200313de2cf8"
+            ]
+        ]
+    },
+    {
+        "id": "8369200313de2cf8",
+        "type": "ui_text",
+        "z": "bd347a06c48fec37",
+        "group": "fb57e216e5d222e0",
+        "order": 6,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "今天",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 590,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "d9c900018a9f7057",
+        "type": "change",
+        "z": "bd347a06c48fec37",
+        "name": "農曆",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.Result.nongli",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 100,
+        "wires": [
+            [
+                "68b1de90d4c089b8",
+                "93e1f5eba83a127a",
+                "83f65233c71ec6c4",
+                "a7de0139273b9571"
+            ]
+        ]
+    },
+    {
+        "id": "68b1de90d4c089b8",
+        "type": "ui_text",
+        "z": "bd347a06c48fec37",
+        "group": "fb57e216e5d222e0",
+        "order": 8,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "農曆",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 590,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "ca8b8d1697385d14",
+        "type": "change",
+        "z": "bd347a06c48fec37",
+        "name": "節氣",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.Result.jieqi",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 220,
+        "wires": [
+            [
+                "e0cbdc319293339c"
+            ]
+        ]
+    },
+    {
+        "id": "e0cbdc319293339c",
+        "type": "ui_text",
+        "z": "bd347a06c48fec37",
+        "group": "fb57e216e5d222e0",
+        "order": 10,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "節氣",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 590,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "71eabe020aa43f9e",
+        "type": "change",
+        "z": "bd347a06c48fec37",
+        "name": "農曆節日",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.Result.festivals_nl",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 180,
+        "wires": [
+            [
+                "8f33bb627092ed90"
+            ]
+        ]
+    },
+    {
+        "id": "8f33bb627092ed90",
+        "type": "ui_text",
+        "z": "bd347a06c48fec37",
+        "group": "fb57e216e5d222e0",
+        "order": 12,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "農曆節日",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 600,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "f9c53058e7e36eee",
+        "type": "change",
+        "z": "bd347a06c48fec37",
+        "name": "適合做:",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.Result.do",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 260,
+        "wires": [
+            [
+                "0c1755bbeca718db"
+            ]
+        ]
+    },
+    {
+        "id": "0c1755bbeca718db",
+        "type": "ui_text",
+        "z": "bd347a06c48fec37",
+        "group": "fb57e216e5d222e0",
+        "order": 14,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "合宜",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 590,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "27dfaf43632a23e7",
+        "type": "change",
+        "z": "bd347a06c48fec37",
+        "name": "不適合:",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.Result.nodo",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 300,
+        "wires": [
+            [
+                "e3e1b0779c489baf"
+            ]
+        ]
+    },
+    {
+        "id": "e3e1b0779c489baf",
+        "type": "ui_text",
+        "z": "bd347a06c48fec37",
+        "group": "fb57e216e5d222e0",
+        "order": 15,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "不合宜",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 610,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "cb0870b39ff5fb0a",
+        "type": "change",
+        "z": "bd347a06c48fec37",
+        "name": "生肖年",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.Result.shengxiao",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 340,
+        "wires": [
+            [
+                "3b506a7ace1d4330"
+            ]
+        ]
+    },
+    {
+        "id": "3b506a7ace1d4330",
+        "type": "ui_text",
+        "z": "bd347a06c48fec37",
+        "group": "fb57e216e5d222e0",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "生肖年",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 610,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "f46dce0cc36aa442",
+        "type": "NotifyImage",
+        "z": "bd347a06c48fec37",
+        "name": "初一",
+        "tmsg": "今天是初一",
+        "imgfile": "https://upload.shejihz.com/2020/01/11f73cf198e7d1017c5c122aa5211ddf.jpg",
+        "AccToken": "tUM3fItPKm38RhcRtd084HzYRU7Y9akd0dtVJ40LDNT",
+        "x": 870,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e265b0e347651aac",
+        "type": "NotifyImage",
+        "z": "bd347a06c48fec37",
+        "name": "初五",
+        "tmsg": "今天是初五,達摩祖師特殊日",
+        "imgfile": "http://topnews8.com/file//n117656/t.jpg",
+        "AccToken": "tUM3fItPKm38RhcRtd084HzYRU7Y9akd0dtVJ40LDNT",
+        "x": 870,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e07823db9b28118b",
+        "type": "NotifyImage",
+        "z": "bd347a06c48fec37",
+        "name": "十五",
+        "tmsg": "今天農曆十五",
+        "imgfile": "http://topnews8.com/file//n117656/t.jpg",
+        "AccToken": "tUM3fItPKm38RhcRtd084HzYRU7Y9akd0dtVJ40LDNT",
+        "x": 870,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "93e1f5eba83a127a",
+        "type": "switch",
+        "z": "bd347a06c48fec37",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "初一",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "初五",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "十五",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 710,
+        "y": 140,
+        "wires": [
+            [
+                "f46dce0cc36aa442",
+                "9421a560e35e3069"
+            ],
+            [
+                "e265b0e347651aac",
+                "3d294ff96db96faf",
+                "10b9b267eaaf49e8"
+            ],
+            [
+                "e07823db9b28118b"
+            ]
+        ]
+    },
+    {
+        "id": "81cf7711dbd8152d",
+        "type": "ui_template",
+        "z": "bd347a06c48fec37",
+        "group": "fb57e216e5d222e0",
+        "name": "Time and Temp",
+        "order": 1,
+        "width": 4,
+        "height": 3,
+        "format": "<script>\n    var daylist = [\"Sun\", \"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\"];\n    (function(scope){ \n            scope.$watch('msg', function(msg) {\n                if (typeof(msg.payload.colour) != \"undefined\") \n                            { \n                             if (msg.payload.colour==\"orange\"){ $(\".Clock-Wrapper\").css('background-color', '#fb7c00');  $(\".lcdClock\").css('color', '#222'); } \n                             if (msg.payload.colour==\"green\") { $(\".Clock-Wrapper\").css('background-color', '#66ac66');  $(\".lcdClock\").css('color', '#222'); }                            \n                             if (msg.payload.colour==\"blue\")  { $(\".Clock-Wrapper\").css('background-color', '#8888ff');  $(\".lcdClock\").css('color', '#222'); }\n                             if (msg.payload.colour==\"yellow\"){ $(\".Clock-Wrapper\").css('background-color', '#bbbb44');  $(\".lcdClock\").css('color', '#222'); } \n                             if (msg.payload.colour==\"white\") { $(\".Clock-Wrapper\").css('background-color', '#aaaaaa');  $(\".lcdClock\").css('color', '#222'); } \n                             if (msg.payload.colour==\"pink\")  { $(\".Clock-Wrapper\").css('background-color', '#ff8888');  $(\".lcdClock\").css('color', '#222'); } \n                             if (msg.payload.colour==\"red\")  { $(\".Clock-Wrapper\").css('background-color', '#aa2222');  $(\".lcdClock\").css('color', '#ccaa22'); } \n                             if (msg.payload.colour==\"brown\")  { $(\".Clock-Wrapper\").css('background-color', '#964B00');  $(\".lcdClock\").css('color', '#D1D1D1'); }\n                             if (msg.payload.colour==\"cyan\")  { $(\".Clock-Wrapper\").css('background-color', '#2C4E59');  $(\".lcdClock\").css('color', '#D1D1D1'); }\n                                \n                            }\n            });\n    })(scope);\n\n    function genTimerStrings(tm, num){\n    \n    \tvar i;\n    \tvar ret = tm.toString(10);\n    \tvar left = ret.length;\n    \n    \tif( left < num){\n    \t\tfor(i=0; i<( num - left ); i++ ){\n    \t\t\tret = String(0) + ret;\n    \t\t}\n    \t}\n    \treturn ret;\n    }\n\n    function updateTimer(){\n    \tvar ret;\n    \tvar date = new Date();\n    \tvar tm_year, tm_mon, tm_date, tm_hour, tm_min, tm_sec, tm_msec,tm_day;\n    \tvar colon;\n    \ttm_year = date.getFullYear();\n    \ttm_mon = date.getMonth()+1;\n    \ttm_date = date.getDate();\n    \ttm_day = date.getDay();\n    \ttm_hour = date.getHours();\n    \ttm_min = date.getMinutes();\n    \ttm_sec = date.getSeconds();\n    \ttm_msec = date.getMilliseconds();\n    \n    \ttm_mon = genTimerStrings(tm_mon, 2);\n    \ttm_date = genTimerStrings(tm_date, 2);\n    \ttm_hour = genTimerStrings(tm_hour, 2);\n    \ttm_min = genTimerStrings(tm_min, 2);\n    \ttm_sec = genTimerStrings(tm_sec, 2);\n    \ttm_day = daylist[tm_day];\n    \n    \tif( tm_msec > 499 ){\n    \t\tcolon = ' ';\n    \t}else{\n    \t\tcolon = ':';\n    \t}\n    \n    \tdocument.getElementById(\"DSEGClock\").innerHTML = tm_hour + colon + tm_min + \"<span style=\\\"font-size:30px;\\\">\"  + tm_sec + \"</span>\";\n    \tdocument.getElementById(\"DSEGClock-Year\").innerHTML = \"<span class=\\\"D7MI\\\">\" + tm_year + \"-\" + tm_mon + \"-\" + tm_date + ' ' + \"</span><span class=\\\"D14MI\\\">\" + tm_day  +  \".\" + \"</span>\";\n    \n    \tsetTimeout(\"updateTimer()\", 500 - date.getMilliseconds()%500 );\n    }\n\n    updateTimer();\n</script>\n\n<style type=\"text/css\">\n.lcdClock {\n\tbackground-color:#fb7c00;\n\tfont-size:100%;\n\tpadding-left:10px;\n\tpadding-right:10px;\n\tpadding-bottom:10px;\n\tmax-width:130px;\n\tline-height:160%;\n\tcolor:#222;\n\tfont-family:Meiryo, 'Lucida Grande','Hiragino Kaku Gothic ProN', sans-serif;\n}\n\n@font-face {\n  font-family: \"D7MI\";\n  src: url(\"/myfonts/DSEG7Modern-Italic.woff\") format('woff');\n}\n\n@font-face {\n  font-family: \"D14MI\";\n  src: url(\"/myfonts/DSEG14Modern-Italic.woff\") format('woff');\n}\n\n@font-face {\n  font-family: \"D7MBI\";\n  src: url(\"/myfonts/DSEG7Modern-BoldItalic.woff\") format('woff');\n}\n\n@font-face {\n  font-family: \"DWEATHER\";\n  src: url(\"/myfonts/DSEGWeather.woff\") format('woff');\n}\n\n.D7MI {\nfont-family: \"D7MI\";\n}\n\n.D7MBI {\nfont-family: \"D7MBI\";\n}\n\n.D14MI {\nfont-family: \"D14MI\";\n}\n\n.DWEATHER {\nfont-family: \"DWEATHER\";\nfont-size:72px;\nheight:72px;\n}\n\n.Clock-Wrapper{\n\tposition:relative;\n\tborder:6px solid #000;\n\tborder-radius:9px;\n\theight:68px;\n\twidth:280px;\n\tbackground-color:#fb7c00;\n\tbackground-color:#fb7c00;  //背景顏色\n\n\tbox-shadow: 4px 4px 28px 0px rgba(0,0,0,0.3) inset; \n}\n\n.Clock-Time-Background{\n\tz-index:50;\n\tcolor:rgba(0,0,0,0.15);\n}\n\n.Clock-Time-Front{\n\tz-index:100;\n}\n\n.Clock-Time-Background,.Clock-Time-Front {\n   \tposition:absolute;\n\ttop:38px;\n\tleft:5px; \n\tfont-size:42px;\n}\n\n.Clock-Year-Background{\n\tz-index:50;\n;\n\tcolor:rgba(0,0,0,0.05);\n\tfont-size:18px;\n}\n\n.Clock-Year-Front{\n\tz-index:100;\n}\n\n.Clock-Year-Background,.Clock-Year-Front {\n   \tposition:absolute;\n\ttop:2px;\n\tleft:5px; \n\tfont-size:18px;\n}\n\n\n\n#DSEG7_OUTPUT{\n\tfont-family: \"D7MI\";\n}\n\n#DSEG14_OUTPUT{\n\tfont-family: \"D14MI\";\n}\n\n#DSEG14_OUTPUT, #DSEG7_OUTPUT{\n\tfont-size:18px;\n\tmargin-top:2px;\n\tmargin-bottom:10px;\n}\n\n</style>\n\n\n<div class=\"Clock-Wrapper center lcdClock\">\n\t<span class=\"Clock-Time-Background D7MBI\">00:00<span style=\"font-size:30px;\">88</span></span>\n\t<span id=\"DSEGClock\" class=\"Clock-Time-Front D7MBI\"></span>\n\t<span class=\"Clock-Year-Background\"><span class=\"D7MI\">2888-88-88</span><span class=\"D14MI\"> ~~~</span></span>\n\t<span id=\"DSEGClock-Year\" class=\"Clock-Year-Front\"></span>\n\t\n\t\n</div>\n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 160,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9421a560e35e3069",
+        "type": "mqtt out",
+        "z": "bd347a06c48fec37",
+        "name": "",
+        "topic": "338/one",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9be2d2ccab8bd7e4",
+        "x": 870,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "3d294ff96db96faf",
+        "type": "mqtt out",
+        "z": "bd347a06c48fec37",
+        "name": "",
+        "topic": "338/fifteen",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9be2d2ccab8bd7e4",
+        "x": 870,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "10b9b267eaaf49e8",
+        "type": "mqtt out",
+        "z": "bd347a06c48fec37",
+        "name": "",
+        "topic": "338/five",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9be2d2ccab8bd7e4",
+        "x": 870,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "83f65233c71ec6c4",
+        "type": "debug",
+        "z": "bd347a06c48fec37",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "a7de0139273b9571",
+        "type": "mqtt out",
+        "z": "bd347a06c48fec37",
+        "name": "",
+        "topic": "338/allday",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9be2d2ccab8bd7e4",
+        "x": 780,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "c98db3d7829a0c5a",
+        "type": "NotifyImage",
+        "z": "bd347a06c48fec37",
+        "name": "十四",
+        "tmsg": "今天農曆十四囉",
+        "imgfile": "https://share99.com/wp-content/uploads/2018/01/n-10.jpg",
+        "AccToken": "tUM3fItPKm38RhcRtd084HzYRU7Y9akd0dtVJ40LDNT",
+        "x": 1050,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bd027888ac182725",
+        "type": "ui_spacer",
+        "z": "bd347a06c48fec37",
+        "name": "spacer",
+        "group": "fb57e216e5d222e0",
+        "order": 3,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "a2615266d25e9422",
+        "type": "ui_spacer",
+        "z": "bd347a06c48fec37",
+        "name": "spacer",
+        "group": "fb57e216e5d222e0",
+        "order": 5,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "2dd2aea7fe80604f",
+        "type": "ui_spacer",
+        "z": "bd347a06c48fec37",
+        "name": "spacer",
+        "group": "fb57e216e5d222e0",
+        "order": 7,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "bde6608a60fffcd1",
+        "type": "ui_spacer",
+        "z": "bd347a06c48fec37",
+        "name": "spacer",
+        "group": "fb57e216e5d222e0",
+        "order": 9,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "4ddbbc3944baa080",
+        "type": "ui_spacer",
+        "z": "bd347a06c48fec37",
+        "name": "spacer",
+        "group": "fb57e216e5d222e0",
+        "order": 11,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "943a864800e61617",
+        "type": "ui_spacer",
+        "z": "bd347a06c48fec37",
+        "name": "spacer",
+        "group": "fb57e216e5d222e0",
+        "order": 13,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "d1332044428a4f33",
+        "type": "ui_spacer",
+        "z": "bd347a06c48fec37",
+        "name": "spacer",
+        "group": "fb57e216e5d222e0",
+        "order": 17,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "fb57e216e5d222e0",
+        "type": "ui_group",
+        "name": "農民曆",
+        "tab": "6cd3b16d6c5eff3d",
+        "order": 1,
+        "disp": true,
+        "width": "8",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "9be2d2ccab8bd7e4",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "49.158.236.151",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "6cd3b16d6c5eff3d",
+        "type": "ui_tab",
+        "z": "bd347a06c48fec37",
+        "name": "農民曆",
+        "icon": "dashboard",
+        "order": 5,
+        "disabled": false,
+        "hidden": false
+    }
+]
